@@ -182,6 +182,11 @@ func (a *Archive) Name() string {
 	return C.GoString(C.ar_entry_get_name(a.archive))
 }
 
+// Name returns the name of the current entry
+func (a *Archive) NameValid() bool {
+	return C.ar_entry_get_name(a.archive) != nil
+}
+
 // ModTime returns the stored modification time of the current entry
 func (a *Archive) ModTime() time.Time {
 	filetime := int64(C.ar_entry_get_filetime(a.archive))
